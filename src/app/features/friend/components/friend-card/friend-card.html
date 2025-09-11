@@ -1,0 +1,7 @@
+<div [routerLink]="['/friend', friend.id]" [state]="{ friend }" class="friend-card">
+  <h3>{{ friend.info.fullName || 'Unnamed' }}</h3>
+  <p><strong>Phone:</strong> {{ friend.contact.phone }}</p>
+  <p><strong>Email:</strong> {{ friend.contact.email || '-' }}</p>
+  <p><strong>Father:</strong> {{ friend.parent.father || '-' }}</p>
+  <p><strong>Mother:</strong> {{ friend.parent.mother || '-' }}</p>
+</div>

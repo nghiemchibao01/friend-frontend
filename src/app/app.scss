@@ -1,0 +1,14 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  padding-top: calc(var(--header-height) + var(--header-padding-y)*2);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

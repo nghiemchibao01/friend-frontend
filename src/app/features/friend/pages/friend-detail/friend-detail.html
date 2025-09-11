@@ -1,0 +1,30 @@
+@if (!isLoading && friend) {
+<div class="friend-detail">
+<h2>{{ friend.info.fullName || 'Unknown' }} ({{ friend.info.nickName || "Unknown" }})</h2>
+
+<section>
+    <h3>Information</h3>
+    <p><strong>Birthday:</strong> {{ friend.info.birthDay || '-' }}</p>
+    <p><strong>Address:</strong> {{ friend.info.address || '-' }}</p>
+    <p><strong>Hobby:</strong> {{ friend.info.hobby || '-' }}</p>
+    <p><strong>Elementary School:</strong> {{ friend.info.elementarySchool || '-' }}</p>
+    <p><strong>Middle School:</strong> {{ friend.info.middleSchool || '-' }}</p>
+    <p><strong>High School:</strong> {{ friend.info.highSchool || '-' }}</p>
+    <p><strong>University:</strong> {{ friend.info.university || '-' }}</p>
+</section>
+
+<section>
+    <h3>Contact Info</h3>
+    <p><strong>Facebook:</strong> {{ friend.contact.fb || '-' }}</p>
+    <p><strong>Instagram:</strong> {{ friend.contact.ins || '-' }}</p>
+    <p><strong>Phone:</strong> {{ friend.contact.phone || '-' }}</p>
+    <p><strong>Email:</strong> {{ friend.contact.email || '-' }}</p>
+</section>
+
+<section>
+    <h3>Parent Info</h3>
+    <p><strong>Father:</strong> {{ friend.parent.father || '-' }}</p>
+    <p><strong>Mother:</strong> {{ friend.parent.mother || '-' }}</p>
+</section>
+</div>
+}

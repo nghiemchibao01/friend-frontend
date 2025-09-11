@@ -1,1 +1,13 @@
-<p>header works!</p>
+<header class="header">
+  <div class="logo" routerLink="/">Bao's Friends</div>
+
+  <button type="button" class="menu-toggle" (click)="toggleMenu()">☰</button>
+
+  <nav [class.open]="menuOpen">
+    <a routerLink="/friends">Friends</a>
+    <a routerLink="/add-friend">Add Friend</a>
+    <button type="button" class="theme-toggle" (click)="toggleTheme()">
+      {{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}
+    </button>
+  </nav>
+</header>

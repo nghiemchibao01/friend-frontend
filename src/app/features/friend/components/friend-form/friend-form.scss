@@ -1,0 +1,46 @@
+.accordion {
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+
+  h3 {
+    margin: 0;
+    padding: 0.8rem 1rem;
+    background: var(--primary-color);
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+
+    &.active {
+      background: var(--hover-overlay-weak);
+    }
+  }
+
+  .content {
+    padding: 1rem;
+    background: var(--card-bg-color);
+
+    label {
+      display: block;
+      margin: 0.6rem 0;
+
+      input {
+        width: 100%;
+        padding: 0.5rem;
+      }
+    }
+  }
+}
+
+.form-actions {
+  text-align: right;
+
+  button {
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+}

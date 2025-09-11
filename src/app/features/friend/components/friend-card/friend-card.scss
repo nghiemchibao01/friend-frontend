@@ -1,0 +1,11 @@
+.friend-card {
+  background: var(--card-bg-color);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  transition: background 0.3s ease;
+  color: var(--text-color);
+
+  &:hover {
+    background: var(--card-bg-hover-color);
+  }
+}

@@ -1,0 +1,66 @@
+.home {
+  padding: 6rem 2rem 2rem; // push down to avoid header overlap
+  text-align: center;
+  color: var(--text-color);
+
+  .hero {
+    margin-bottom: 3rem;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: var(--text-color);
+    }
+
+    .cta-btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: var(--primary-color);
+      color: #fff;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: var(--secondary-color);
+      }
+    }
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+
+    .feature-card {
+      background: var(--surface-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+
+      h2 {
+        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+      }
+
+      p {
+        font-size: 1rem;
+        color: var(--text-color);
+      }
+    }
+  }
+}

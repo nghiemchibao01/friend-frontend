@@ -1,0 +1,22 @@
+<div class="friend-list">
+  <h2>Friends</h2>
+
+  <div class="friend-search-form">
+    <input
+      #searchInput
+      type="text"
+      placeholder="Search friends..."
+      class="lg-text-input"
+      id="searchInput"
+      (keyup.enter)="onSearch(searchInput.value)"
+    />
+
+    <button class="btn-primary" (click)="onSearch(searchInput.value)" type="button">Search</button>
+  </div>
+
+  <div class="friend-cards">
+    @for (friend of filteredFriends; track friend.id) {
+    <app-friend-card [friend]="friend"></app-friend-card>
+    }
+  </div>
+</div>

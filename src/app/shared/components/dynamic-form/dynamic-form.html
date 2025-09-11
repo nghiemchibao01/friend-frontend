@@ -1,0 +1,53 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  @for (field of fields; track field.key) {
+    <div class="form-group">
+      @if (field.type !== 'checkbox' && field.type !== 'checkbox-group') {
+        <label [for]="field.key">{{ field.label }}</label>
+      }
+
+      @switch (field.type) {
+        @case ('text') {
+          <input [id]="field.key" type="text" [formControlName]="field.key" [placeholder]="field.placeholder || ''" />
+        }
+        @case ('email') {
+          <input [id]="field.key" type="email" [formControlName]="field.key" />
+        }
+        @case ('date') {
+          <input [id]="field.key" type="date" [formControlName]="field.key" />
+        }
+        @case ('number') {
+          <input [id]="field.key" type="number" [formControlName]="field.key" />
+        }
+        @case ('textarea') {
+          <textarea [id]="field.key" [formControlName]="field.key"></textarea>
+        }
+        @case ('select') {
+          <select [id]="field.key" [formControlName]="field.key">
+            @for (opt of field.options; track opt.value) {
+              <option [value]="opt.value">{{ opt.label }}</option>
+            }
+          </select>
+        }
+        @case ('checkbox') {
+          <label>
+            <input type="checkbox" [formControlName]="field.key" [id]="field.key" />
+            {{ field.label }}
+          </label>
+        }
+        @case ('checkbox-group') {
+          <fieldset>
+            <legend>{{ field.label }}</legend>
+            @for (opt of field.options; track opt.value) {
+              <label>
+                <input type="checkbox" [value]="opt.value" (change)="onCheckboxGroupChange(field.key, $event)" />
+                {{ opt.label }}
+              </label>
+            }
+          </fieldset>
+        }
+      }
+    </div>
+  }
+
+  <button type="submit" class="btn-primary">{{ submitLabel }}</button>
+</form>

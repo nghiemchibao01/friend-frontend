@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Friend as FriendModel } from '../../models/friend/Friend';
+import { Friend as FriendModel } from '../../friend/models/Friend';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -13,7 +13,9 @@ export class FriendService {
 
 
   getFriends(): Observable<FriendModel[]> {
-    return this.http.get<FriendModel[]>(this.apiUrl);
+    var friends = this.http.get<FriendModel[]>(this.apiUrl);
+    console.log(friends);
+    return friends;
   }
 
   getFriendById(id: number): Observable<FriendModel> {

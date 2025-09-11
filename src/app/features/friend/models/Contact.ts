@@ -1,0 +1,6 @@
+export interface Contact {
+    fb: string;
+    ins: string;
+    phone: string;
+    email: string;
+}
