@@ -1,49 +1,94 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   @for (field of fields; track field.key) {
-    <div class="form-group">
-      @if (field.type !== 'checkbox' && field.type !== 'checkbox-group') {
-        <label [for]="field.key">{{ field.label }}</label>
-      }
+    <div [formGroupName]="field.group ? field.group : null">
 
       @switch (field.type) {
-        @case ('text') {
-          <input [id]="field.key" type="text" [formControlName]="field.key" [placeholder]="field.placeholder || ''" />
+
+        @case (FieldType.Text) {
+          <label>{{ field.label }}
+            <input [formControlName]="field.key" [placeholder]="field.placeholder">
+          </label>
         }
-        @case ('email') {
-          <input [id]="field.key" type="email" [formControlName]="field.key" />
+
+        @case (FieldType.Number) {
+          <label>{{ field.label }}
+            <input [formControlName]="field.key" [placeholder]="field.placeholder">
+          </label>
         }
-        @case ('date') {
-          <input [id]="field.key" type="date" [formControlName]="field.key" />
+
+        @case (FieldType.Tel) {
+          <label>{{ field.label }}
+            <input type="tel" [formControlName]="field.key" [placeholder]="field.placeholder">
+          </label>
         }
-        @case ('number') {
-          <input [id]="field.key" type="number" [formControlName]="field.key" />
+
+        @case (FieldType.Textarea) {
+          <label>{{ field.label }}
+            <textarea [formControlName]="field.key" [placeholder]="field.placeholder"></textarea>
+          </label>
         }
-        @case ('textarea') {
-          <textarea [id]="field.key" [formControlName]="field.key"></textarea>
+
+        @case (FieldType.Email) {
+          <label>{{ field.label }}
+            <input type="email" [formControlName]="field.key" [placeholder]="field.placeholder">
+          </label>
         }
-        @case ('select') {
-          <select [id]="field.key" [formControlName]="field.key">
-            @for (opt of field.options; track opt.value) {
+
+        @case (FieldType.Date) {
+          <label>{{ field.label }}
+            <input type="date" [formControlName]="field.key">
+          </label>
+        }
+
+        @case (FieldType.Password) {
+          <label>{{ field.label }}
+            <input type="password" [formControlName]="field.key" [placeholder]="field.placeholder" />
+          </label>
+        }
+
+        @case (FieldType.Select) {
+          <label>{{ field.label }}</label>
+          <select [formControlName]="field.key">
+            @for (opt of field.options!; track opt.value) {
               <option [value]="opt.value">{{ opt.label }}</option>
             }
           </select>
         }
-        @case ('checkbox') {
-          <label>
-            <input type="checkbox" [formControlName]="field.key" [id]="field.key" />
-            {{ field.label }}
-          </label>
-        }
-        @case ('checkbox-group') {
-          <fieldset>
-            <legend>{{ field.label }}</legend>
-            @for (opt of field.options; track opt.value) {
+
+          @case (FieldType.RadioGroup) {
+          <label>{{ field.label }}</label>
+          <div class="radio-group">
+            @for (opt of field.options!; track opt.value) {
               <label>
-                <input type="checkbox" [value]="opt.value" (change)="onCheckboxGroupChange(field.key, $event)" />
+                <input type="radio" [formControlName]="field.key" [value]="opt.value" />
                 {{ opt.label }}
               </label>
             }
-          </fieldset>
+          </div>
+        }
+
+        @case (FieldType.Checkbox) {
+          <label>
+            <input type="checkbox" [formControlName]="field.key" />
+            {{ field.label }}
+          </label>
+        }
+
+        @case (FieldType.CheckboxGroup) {
+          <label>{{ field.label }}</label>
+          <div [formArrayName]="field.key">
+            @for (opt of field.options!; track opt.value; let i = $index) {
+              <label>
+                <input type="checkbox" [formControlName]="i"
+                       (change)="onCheckboxGroupChange(field)">
+                {{ opt.label }}
+              </label>
+            }
+          </div>
+        }
+
+        @default {
+          <p>⚠ Unknown field type: {{ field.type }}</p>
         }
       }
     </div>

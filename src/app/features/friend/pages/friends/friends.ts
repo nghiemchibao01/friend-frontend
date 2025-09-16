@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { Friend } from '../../models/Friend';
 import { FriendService } from '../../services/friend';
 import { FriendCard } from '../../components/friend-card/friend-card';
+import { Loader } from '../../../../shared/components/loader/loader';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-friends',
-  imports: [FriendCard],
+  imports: [FriendCard, Loader],
   templateUrl: './friends.html',
   styleUrl: './friends.scss',
 })
 export class Friends implements OnInit {
+  private friendService = inject(FriendService);
+  private router = inject(Router);
+
   friends: Friend[] = [];
   filteredFriends: Friend[] = [];
   isLoading = true;
   filterText = '';
-
-  constructor(private friendService: FriendService) {}
 
   ngOnInit(): void {
     this.friendService.getFriends().subscribe({
@@ -23,12 +26,10 @@ export class Friends implements OnInit {
         this.friends = data;
         this.filteredFriends = this.friends;
         this.isLoading = false;
-        console.log('Fetched friends:', data);
-        console.log(this.friends);
       },
       error: (e) => {
         this.isLoading = false;
-        console.error(e);
+        this.router.navigate(['404']);
       },
     });
   }

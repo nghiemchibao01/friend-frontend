@@ -1,3 +1,5 @@
+import { createKeys } from "../../../shared/utils/key.util";
+
 export interface Info {
   fullName: string;
   nickName: string;
@@ -9,3 +11,5 @@ export interface Info {
   highSchool: string;
   university: string;
 }
+
+export const INFO_KEYS = createKeys<Info>();

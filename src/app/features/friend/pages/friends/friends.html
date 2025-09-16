@@ -14,9 +14,14 @@
     <button class="btn-primary" (click)="onSearch(searchInput.value)" type="button">Search</button>
   </div>
 
+  @if (isLoading) {
+  <app-loader />
+  }
+  @else {
   <div class="friend-cards">
     @for (friend of filteredFriends; track friend.id) {
     <app-friend-card [friend]="friend"></app-friend-card>
     }
   </div>
+  }
 </div>
